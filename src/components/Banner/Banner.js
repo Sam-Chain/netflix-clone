@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import './Banner.css'
-import axios from './axios'
-import requests from './requests'
+import axios from '../../utils/axios'
+import requests from '../../utils/requests'
 
 function Banner() {
-    const [movie, setMovie]=useState([])
+    const [movie, setMovie] = useState([])
 
-    useEffect(()=>{
-        async function fetchData(){
+    useEffect(() => {
+        async function fetchData() {
             const request = await axios.get(requests.fetchNetflixOriginals);
-                setMovie( request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
+            setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
 
             return request;
         }
         fetchData();
-    },[])
+    }, [])
     // console.log(movie)
-    function truncate(str, n){
-        return str?.length > n ? str.substr(0, n-1) + "..." : str;
+    function truncate(str, n) {
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
     }
 
     return (
@@ -28,7 +28,7 @@ function Banner() {
                 backgroundPosition: "center center",
                 // maskImage: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))"
             }}
-        > 
+        >
             <div className="banner__contents">
                 <h1 className="banner__title">{movie?.title || movie?.name || movie?.original_name}</h1>
 
@@ -41,7 +41,7 @@ function Banner() {
                     {truncate(movie?.overview, 150)}
                 </h1>
             </div>
-            <div className="banner--fadeBottom"/>
+            <div className="banner--fadeBottom" />
         </header>
     )
 }
