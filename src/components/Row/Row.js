@@ -20,7 +20,7 @@ function Row({ title, fetchURL, isLargeRow }) {
     }, [fetchURL])
 
     const opts = {
-        height: "390",
+        height: "500",
         width: "100%",
         playerVars: {
             autoplay: 1,
@@ -47,7 +47,8 @@ function Row({ title, fetchURL, isLargeRow }) {
                         onClick={() => handleClick(movie)}
                         key={movie.id}
                         className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                        src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path} `}
+                        // src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path} `}
+                        src={`${base_url}${movie.poster_path}`}
                         alt={movie.name}
                     />
                 ))}
